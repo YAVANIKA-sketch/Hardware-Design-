@@ -1,0 +1,37 @@
+# ⚡ Biased Parallel Positive Clipper Circuit
+
+## 1. What is it?
+A **biased parallel positive clipper** (or limiter) is an analog wave-shaping circuit[cite: 1, 2] that restricts or "clips" the voltage of an input signal once it exceeds a predetermined threshold[cite: 1, 2]. In this specific configuration, it prevents the positive half-cycle of an AC waveform from rising above a set voltage level while leaving the negative portion unaffected[cite: 1, 2].
+
+
+## 2. What is the Application?
+* **Voltage Clamping & Over-voltage Protection:** Protects sensitive downstream components from unexpected voltage spikes[cite: 1].
+* **Signal Conditioning:** Prepares analog signals to match safe input ranges required by microcontrollers, logic gates, and data converters[cite: 1].
+* **Wave Shaping:** Converts sinusoidal signals into modified, amplitude-limited waveforms[cite: 1].
+
+## 3. Where is it used in Satellites?
+In space systems and satellite avionics, clipper circuits are deployed in:
+* **Analog Front-Ends (AFEs):** Protecting sensitive Analog-to-Digital Converter (ADC) inputs on the On-Board Computer (OBC) or Payload Controller from over-voltage events.
+* **Sensor Signal Conditioning:** Safeguarding telemetry lines connected to external sensors against transient surges.
+* **Communication Subsystems:** Preventing high-amplitude noise or transient pulses from damaging low-voltage transceiver inputs.
+
+## 4. What Kind of Devices / Components Used?
+* **Diodes:** Silicon Diodes (e.g., 1N4007[cite: 2] for general simulation, or fast-switching/Schottky diodes like 1N4148 for high-frequency signals) / Zener Diodes[cite: 1].
+* **DC Voltage Source / Bias:** Battery source (`BT1`) or DC reference supply to establish the clipping threshold[cite: 2].
+* **Resistors:** Current-limiting and load resistors (`R1`, `R2`)[cite: 2] to control current flow when the diode conducts.
+* **Signal Generator:** AC source (`V1`) simulating sensor outputs or incoming AC waveforms[cite: 2].
+
+## 5. Working Principle
+* **Positive Half-Cycle ($V_{in}$ rising):** As the input voltage increases, the diode remains reverse-biased until it reaches the threshold defined by the DC bias voltage and diode drop. Once $V_{in}$ exceeds this threshold, the diode becomes forward-biased, shunting excess current and holding the output voltage constant[cite: 1, 2].
+* **Negative Half-Cycle ($V_{in}$ falling):** The diode is reverse-biased (acts as an open circuit), allowing the negative portion of the input signal to pass through to the output completely unaffected[cite: 1, 2].
+* **Threshold Formula:** 
+  $$V_{\text{clip}} = V_{\text{bias}} - V_D$$
+  *(Where $V_{\text{bias}}$ is the DC source voltage and $V_D$ is the diode's forward voltage drop[cite: 2].)*
+
+## 6. Electrical Functional Parameters
+* **Input Voltage ($V_{in}$):** Sine wave, $10\,\text{V}$ amplitude ($20\,\text{V}$ peak-to-peak), $500\,\text{Hz}$ frequency[cite: 2].
+* **DC Bias Voltage ($V_{\text{bias}}$):** $3.0\,\text{V}$[cite: 2].
+* **Diode Forward Voltage ($V_D$):** $\approx 0.4\,\text{V} - 0.7\,\text{V}$ (Silicon PN junction).
+* **Measured Clipping Level ($V_{\text{out}}$ limit):** $\approx 2.5\,\text{V}$ to $2.6\,\text{V}$ (accounting for diode drop)[cite: 1, 2].
+* **Load Resistance ($R_2$):** $10\,\text{k}\Omega$[cite: 2].
+* **Current-Limiting Resistance ($R_1$):** $1\,\text{k}\Omega$[cite: 2].
