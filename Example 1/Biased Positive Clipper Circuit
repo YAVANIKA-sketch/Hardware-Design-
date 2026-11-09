@@ -35,3 +35,11 @@ In space systems and satellite avionics, clipper circuits are deployed in:
 * **Measured Clipping Level ($V_{\text{out}}$ limit):** $\approx 2.5\,\text{V}$ to $2.6\,\text{V}$ (accounting for diode drop)[cite: 1, 2].
 * **Load Resistance ($R_2$):** $10\,\text{k}\Omega$[cite: 2].
 * **Current-Limiting Resistance ($R_1$):** $1\,\text{k}\Omega$[cite: 2].
+
+### 📌 Summary & Findings
+* **Topology:** Biased Parallel Positive Clipper (1N4007 Silicon Diode + DC Bias Source)
+* **Function:** Limits the positive peak of the input AC waveform while allowing the negative half-cycle to pass unfiltered.
+* **Threshold Equation:** 
+  $$V_{\text{clip}} = V_{\text{bias}} - V_D$$
+* **Simulation Result:** With $V_{\text{bias}} = 3.0\text{V}$ and $V_D \approx 0.5\text{V}$, the output clips cleanly at $\approx 2.5\text{V}$.
+* **Space System Application:** Over-voltage clamping and transient spike protection for sensitive analog-to-digital converter (ADC) inputs on flight computers.
